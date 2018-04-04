@@ -22,7 +22,7 @@
             </nav>
         </header>
         <section>
-            <h1>Home</h1>
+            <h1>Product Details</h1>
         </section>
     </body>
 </html>
