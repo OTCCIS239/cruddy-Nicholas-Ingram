@@ -13,16 +13,16 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/products', function () {
     return view('products');
-});
+})->name('products');
 
 Route::get('/products/details', function () {
     return view('product-details');
-});
+})->name('product-details');
 
 Route::get('/orders', function () {
     return view('orders');
-});
+})->name('orders');
