@@ -15,14 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/products', function () {
-    return view('products');
-})->name('products');
+Route::get('/products/{all}', 'ProductController@index');
+Route::get('/products/{all}/create', 'ProductController@create');
+Route::get('/products/{all}/{id}', 'ProductController@show');
 
-Route::get('/products/details', function () {
-    return view('product-details');
-})->name('product-details');
+Route::get('/users', 'UsersController@index')->name('users');
+Route::get('/users/create', 'UsersController@create');
+Route::get('/users/{id}', 'UsersController@show');
 
-Route::get('/orders', function () {
-    return view('orders');
-})->name('orders');
+Route::get('/orders', 'OrdersController@index')->name('orders');
+Route::get('/orders/create', 'OrdersController@create');
+Route::get('/orders/{id}', 'OrdersController@show');
