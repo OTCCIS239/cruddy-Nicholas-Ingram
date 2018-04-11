@@ -11,9 +11,29 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($category)
     {
-        return view('products.view-products');
+        if ($category == 'games') {
+            $productInfo = [
+                'name' => 'Mass Effect',
+                'price' => 10.99,
+                'id' => 'g_me1'
+            ];
+        } else if ($category == 'consoles') {
+            $productInfo = [
+                'name' => 'Dreamcast',
+                'price' => 99.99,
+                'id' => 'c_dreamcast'
+            ];
+        } else if ($category == 'accessories') {
+            $productInfo = [
+                'name' => 'Playstation Eye Toy',
+                'price' => 49.99,
+                'id' => 'a_eyetoy'
+            ];
+        }
+
+        return view('products.index', ['category' => $category, 'productInfo' => $productInfo]);
     }
 
     /**
@@ -21,9 +41,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($category)
     {
-        return view('products.create');
+        return view('products.create', ['category' => $category]);
     }
 
     /**
@@ -43,9 +63,29 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($category, $id)
     {
-        return view('products.show-product');
+        if ($id == "g_me1") {
+            $productInfo = [
+                'name' => 'Mass Effect',
+                'description' => 'The best Mass Effect game out there. If you dissagree your opinion doesn\'t matter because it\'s the wrong one.',
+                'price' => 10.99
+            ];
+        } else if ($id == "c_dreamcast") {
+            $productInfo = [
+                'name' => 'Sega Dreamcast',
+                'description' => 'Big swirly orange circle and plays the big fast blue hog.',
+                'price' => 99.99
+            ];
+        } else if ($id == "a_eyetoy") {
+            $productInfo = [
+                'name' => 'Playstation Eye Toy',
+                'description' => 'Better then the Kinect.',
+                'price' => 49.99
+            ];
+        }
+
+        return view('products.show', ['category' => $category, 'productInfo' => $productInfo]);
     }
 
     /**

@@ -1,9 +1,3 @@
-<?php
-
-    $category = Request::segment(2);
-
- ?>
-
  @extends('layouts.app')
 
  @section('content')
@@ -12,7 +6,7 @@
              <form>
                  <h2 style="border-bottom: 1px solid rgba(78, 78, 78, 0.65);margin:20px 0;padding: 0 0 20px 0;text-align: center">Product Creation</h2>
                  <h4>Category</h3>
-                 <p><?= $category ?></p>
+                 <p>{{$category}}</p>
                  <div class="form-group">
                      <label for="product-id">Product ID</label>
                      <input type="text" id="product-ID" value="" class="form-control">
