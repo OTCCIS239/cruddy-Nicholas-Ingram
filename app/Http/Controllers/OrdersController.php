@@ -13,7 +13,8 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        return view('orders.index');
+        $orders = \App\Order::all();
+        return view('orders.index', ['orders' => $orders]);
     }
 
     /**

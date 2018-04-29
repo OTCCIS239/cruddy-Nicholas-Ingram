@@ -11,11 +11,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><?= $productInfo['name'] ?></td>
-                <td>$<?= $productInfo['price'] ?></td>
-                <td><button class="btn btn-primary" type="button" onclick="location.href='{{ url("/products/{$category}/{$productInfo['id']}") }}'">View</button></td>
-            </tr>
+            <?php foreach($productInfo as $product): ?>
+                <tr>
+                    <td><?= $product['name'] ?></td>
+                    <td>$<?= $product['price'] ?></td>
+                    <td><button class="btn btn-primary" type="button" onclick="location.href='{{ url("/products/{$category}/{$product['id']}") }}'">View</button></td>
+                </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 @endsection

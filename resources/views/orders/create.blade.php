@@ -14,10 +14,6 @@
                  <h4>Category</h3>
                  <p><?= $category ?></p>
                  <div class="form-group">
-                     <label for="order-id">Order ID</label>
-                     <input type="text" id="order-id" value="" class="form-control">
-                 </div>
-                 <div class="form-group">
                      <label for="user-name">User Name</label>
                      <input type="text" id="user-name" value="" class="form-control">
                  </div>

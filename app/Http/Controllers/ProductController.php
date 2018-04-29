@@ -14,23 +14,11 @@ class ProductController extends Controller
     public function index($category)
     {
         if ($category == 'games') {
-            $productInfo = [
-                'name' => 'Mass Effect',
-                'price' => 10.99,
-                'id' => 'g_me1'
-            ];
+            $productInfo = \App\Game::all();
         } else if ($category == 'consoles') {
-            $productInfo = [
-                'name' => 'Dreamcast',
-                'price' => 99.99,
-                'id' => 'c_dreamcast'
-            ];
+            $productInfo = \App\Console::all();
         } else if ($category == 'accessories') {
-            $productInfo = [
-                'name' => 'Playstation Eye Toy',
-                'price' => 49.99,
-                'id' => 'a_eyetoy'
-            ];
+            $productInfo = \App\Accessory::all();
         }
 
         return view('products.index', ['category' => $category, 'productInfo' => $productInfo]);

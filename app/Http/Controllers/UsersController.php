@@ -13,7 +13,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        $users = \App\User::all();
+        return view('users.index', ['users' => $users]);
     }
 
     /**

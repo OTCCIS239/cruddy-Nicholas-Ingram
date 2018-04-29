@@ -8,16 +8,20 @@
                  <h4>Category</h3>
                  <p>{{$category}}</p>
                  <div class="form-group">
-                     <label for="product-id">Product ID</label>
-                     <input type="text" id="product-ID" value="" class="form-control">
-                 </div>
-                 <div class="form-group">
                      <label for="product-name">Product Name</label>
                      <input type="text" id="product-name" value="" class="form-control">
                  </div>
                  <div class="form-group">
                      <label for="product-description">Product Description</label>
+                     <textarea id="product-description" class="form-control" rows="3"></textarea>
+                 </div>
+                 <div class="form-group">
+                     <label for="product-description">Product Condition</label>
                      <input type="text" id="product-description" value="" class="form-control">
+                 </div>
+                 <div class="form-group">
+                     <label for="product-price">Product Price</label>
+                     <input type="number" id="product-price" class="form-control">
                  </div>
                  <button class="btn btn-primary" type="submit">Create Product</button>
              </form>
