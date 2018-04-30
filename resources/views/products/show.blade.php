@@ -16,6 +16,14 @@
             <h3>Price:</h3>
             <p>${{$product->price}}</p>
             <button class="btn btn-success" type="button">Add To Cart</button>
+            <form action="/{{$category}}/{{$product->id}}" method="post">
+                <input type="hidden" name="_method" value="delete">
+                {{csrf_field()}}
+
+                <button class="btn btn-danger mt-4">
+                    Delete
+                </button>
+            </form>
         </div>
     </div>
 @endsection
