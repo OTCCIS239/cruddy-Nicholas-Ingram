@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Accessory;
 use Illuminate\Http\Request;
-use \App\Order;
 
-class OrdersController extends Controller
+class AccessoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,9 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
-        return view('orders.index', ['orders' => $orders]);
+        $accessorys = Accessory::all();
+
+        return view('products.index', ['category' => 'accessories', 'products' => $accessorys]);
     }
 
     /**
@@ -25,7 +26,7 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        return view('products.create', ['category' => 'accessories']);
     }
 
     /**
@@ -40,9 +41,9 @@ class OrdersController extends Controller
             'name' => 'required',
         ]);
 
-        $order = Order::create($request->all());
+        $accessory = Accessory::create($request->all());
 
-        return redirect('/orders/' . $order->id);
+        return redirect('/accessories/'.$accessory->id);
     }
 
     /**
@@ -51,17 +52,9 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Accessory $accessory)
     {
-        $orderedItems = explode('|', $order['items_ordered']);
-        $orderedItemsPrice = explode('|', $order['items_ordered_prices']);
-
-        $totalPrice = 0;
-        foreach ($orderedItemsPrice as $price) {
-            $totalPrice += (float)$price;
-        }
-
-        return view('orders.show', ['order' => $order, 'orderedItems' => $orderedItems, 'orderedItemsPrice' => $orderedItemsPrice, 'totalPrice' => $totalPrice]);
+        return view('products.show', ['category' => 'accessories', 'product' => $accessory]);
     }
 
     /**
@@ -70,9 +63,9 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(Accessory $accessory)
     {
-        return view('orders.edit', compact('order'));
+        return view('products.edit', ['category' => 'accessories', 'product' => $accessory]);
     }
 
     /**
@@ -82,11 +75,11 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Accessory $accessory)
     {
-        $order->update($request->all());
+        $accessory->update($request->all());
 
-        return redirect('/orders/' . $order->id);
+        return redirect('/accessories/'.$accessory->id);
     }
 
     /**
@@ -95,10 +88,10 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Accessory $accessory)
     {
-        $order->delete();
+        $accessory->delete();
 
-        return redirect('/orders');
+        return redirect('/accessories');
     }
 }

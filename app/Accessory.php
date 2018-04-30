@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Accessory extends Model
 {
-    protected $fillabe = ['name', 'description', 'price', 'console_for', 'condition'];
+    protected $fillable = ['name', 'description', 'price', 'console_for', 'condition'];
 }

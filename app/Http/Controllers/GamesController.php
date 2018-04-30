@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Game;
 use Illuminate\Http\Request;
-use \App\Order;
 
-class OrdersController extends Controller
+class GamesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,9 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
-        return view('orders.index', ['orders' => $orders]);
+        $games = Game::all();
+
+        return view('products.index', ['category' => 'games', 'products' => $games]);
     }
 
     /**
@@ -25,7 +26,7 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        return view('products.create', ['category' => 'games']);
     }
 
     /**
@@ -40,9 +41,9 @@ class OrdersController extends Controller
             'name' => 'required',
         ]);
 
-        $order = Order::create($request->all());
+        $game = Game::create($request->all());
 
-        return redirect('/orders/' . $order->id);
+        return redirect('/games/'.$game->id);
     }
 
     /**
@@ -51,17 +52,9 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Game $game)
     {
-        $orderedItems = explode('|', $order['items_ordered']);
-        $orderedItemsPrice = explode('|', $order['items_ordered_prices']);
-
-        $totalPrice = 0;
-        foreach ($orderedItemsPrice as $price) {
-            $totalPrice += (float)$price;
-        }
-
-        return view('orders.show', ['order' => $order, 'orderedItems' => $orderedItems, 'orderedItemsPrice' => $orderedItemsPrice, 'totalPrice' => $totalPrice]);
+        return view('products.show', ['category' => 'games', 'product' => $game]);
     }
 
     /**
@@ -70,9 +63,9 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(Game $game)
     {
-        return view('orders.edit', compact('order'));
+        return view('products.edit', ['category' => 'games', 'product' => $game]);
     }
 
     /**
@@ -82,11 +75,11 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Game $game)
     {
-        $order->update($request->all());
+        $game->update($request->all());
 
-        return redirect('/orders/' . $order->id);
+        return redirect('/games/'.$game->id);
     }
 
     /**
@@ -95,10 +88,10 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Game $game)
     {
-        $order->delete();
+        $game->delete();
 
-        return redirect('/orders');
+        return redirect('/games');
     }
 }
